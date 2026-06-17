@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -93,6 +92,29 @@
       margin-top: 0.3em;
     }
 
+    .copy-btn {
+      background: none;
+      border: none;
+      color: #768d39;
+      cursor: pointer;
+      font-size: 1em;
+      padding: 0;
+      margin-left: 8px;
+      width: auto;
+      max-width: none;
+      vertical-align: middle;
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+    }
+
+    #copyMessage {
+      display: none;
+      text-align: center;
+      margin-top: 0.5em;
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 1.5em;
@@ -115,18 +137,28 @@
     <button class="bank-btn" onclick="toggleBank()" id="toggleBtn" aria-expanded="false">Banküberweisung</button>
 
     <div id="bank-details">
-  IBAN:<strong>AT29 3950 1000 0007 1860 </strong>
-  Empfänger:<strong>MTB-ALTHOFEN</strong>
-  Verwendungszweck:<strong>Unterstützung</strong>
+      IBAN:
+      <strong>
+        AT29 3950 1000 0007 1860
+        <button class="copy-btn" onclick="copyText('AT293950100000071860')">📋</button>
+      </strong>
 
-  <button class="bank-btn" onclick="copyPaymentData()" style="font-size:1em; margin-top:1em;">
-    📋 Zahlungsdaten kopieren
-  </button>
+      Empfänger:
+      <strong>
+        MTB-ALTHOFEN
+        <button class="copy-btn" onclick="copyText('MTB-ALTHOFEN')">📋</button>
+      </strong>
 
-  <div id="copyMessage" style="display:none; text-align:center; margin-top:0.5em;">
-    ✓ Zahlungsdaten wurden kopiert
-  </div>
-</div>
+      Verwendungszweck:
+      <strong>
+        Unterstützung
+        <button class="copy-btn" onclick="copyText('Unterstützung')">📋</button>
+      </strong>
+
+      <div id="copyMessage">
+        ✓ Kopiert
+      </div>
+    </div>
 
     <a class="button-link member-btn" href="mitglied.html" target="_blank">Werde Mitglied</a>
   </div>
@@ -139,21 +171,17 @@
       details.style.display = visible ? 'none' : 'block';
       btn.setAttribute('aria-expanded', String(!visible));
     }
-    function copyPaymentData() {
-  const paymentData =
-`IBAN: AT29 3950 1000 0007 1860
-Empfänger: MTB-ALTHOFEN
-Verwendungszweck: Unterstützung`;
 
-  navigator.clipboard.writeText(paymentData).then(() => {
-    const msg = document.getElementById('copyMessage');
-    msg.style.display = 'block';
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const msg = document.getElementById('copyMessage');
+        msg.style.display = 'block';
 
-    setTimeout(() => {
-      msg.style.display = 'none';
-    }, 3000);
-  });
-}
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 2000);
+      });
+    }
   </script>
-  
+</body>
 </html>
