@@ -60,6 +60,7 @@
       background-color: #0070ba;
       color: #fff;
     }
+
     .paypal-btn:hover {
       background-color: #005c99;
     }
@@ -68,6 +69,7 @@
       background-color: #5c8828;
       color: #fff;
     }
+
     .bank-btn:hover {
       background-color: #4a6f1f;
     }
@@ -76,8 +78,27 @@
       background-color: #f7941e;
       color: #fff;
     }
+
     .member-btn:hover {
       background-color: #d87c00;
+    }
+
+    .bank-btn-small {
+      background-color: #5c8828;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 5px 0 15px 0;
+      font-size: 0.8em;
+      width: auto;
+      max-width: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .bank-btn-small:hover {
+      background-color: #4a6f1f;
     }
 
     #bank-details {
@@ -92,75 +113,89 @@
       margin-top: 0.3em;
     }
 
-    .copy-btn {
-      background: none;
-      border: none;
-      color: #768d39;
-      cursor: pointer;
-      font-size: 1em;
-      padding: 0;
-      margin-left: 8px;
-      width: auto;
-      max-width: none;
-      vertical-align: middle;
-    }
-
-    .copy-btn:hover {
-      color: #fff;
-    }
-
     #copyMessage {
       display: none;
+      color: #7dff7d;
       text-align: center;
-      margin-top: 0.5em;
+      margin-top: 10px;
+      font-size: 0.9em;
     }
 
     @media (max-width: 480px) {
       h1 {
         font-size: 1.5em;
       }
-      button, a.button-link {
+
+      button,
+      a.button-link {
         font-size: 1em;
         padding: 0.9em;
+      }
+
+      .bank-btn-small {
+        font-size: 0.75em;
       }
     }
   </style>
 </head>
 <body>
+
   <img src="IMG-20250506-WA0001_trans.png" alt="MTB-ALTHOFEN Logo" class="logo">
 
   <div class="container">
     <h1>Unterstützung für MTB-ALTHOFEN</h1>
     <p>Wähle deine bevorzugte Zahlungsart:</p>
 
-    <button class="paypal-btn" onclick="window.location.href='https://www.paypal.com/paypalme/xxmuchexx'">PayPal</button>
-    <button class="bank-btn" onclick="toggleBank()" id="toggleBtn" aria-expanded="false">Banküberweisung</button>
+    <button class="paypal-btn"
+      onclick="window.location.href='https://www.paypal.com/paypalme/xxmuchexx'">
+      PayPal
+    </button>
+
+    <button class="bank-btn"
+      onclick="toggleBank()"
+      id="toggleBtn"
+      aria-expanded="false">
+      Banküberweisung
+    </button>
 
     <div id="bank-details">
+
       IBAN:
-      <strong>
-        AT29 3950 1000 0007 1860
-        <button class="copy-btn" onclick="copyText('AT293950100000071860')">📋</button>
-      </strong>
+      <strong>AT29 3950 1000 0007 1860</strong>
+
+      <button class="bank-btn-small"
+        onclick="copyText('AT293950100000071860')">
+        📋 IBAN kopieren
+      </button>
 
       Empfänger:
-      <strong>
-        MTB-ALTHOFEN
-        <button class="copy-btn" onclick="copyText('MTB-ALTHOFEN')">📋</button>
-      </strong>
+      <strong>MTB-ALTHOFEN</strong>
+
+      <button class="bank-btn-small"
+        onclick="copyText('MTB-ALTHOFEN')">
+        📋 Empfänger kopieren
+      </button>
 
       Verwendungszweck:
-      <strong>
-        Unterstützung
-        <button class="copy-btn" onclick="copyText('Unterstützung')">📋</button>
-      </strong>
+      <strong>Unterstützung</strong>
+
+      <button class="bank-btn-small"
+        onclick="copyText('Unterstützung')">
+        📋 Verwendungszweck kopieren
+      </button>
 
       <div id="copyMessage">
-        ✓ Kopiert
+        ✓ In die Zwischenablage kopiert
       </div>
+
     </div>
 
-    <a class="button-link member-btn" href="mitglied.html" target="_blank">Werde Mitglied</a>
+    <a class="button-link member-btn"
+      href="mitglied.html"
+      target="_blank">
+      Werde Mitglied
+    </a>
+
   </div>
 
   <script>
@@ -168,6 +203,7 @@
       const details = document.getElementById('bank-details');
       const btn = document.getElementById('toggleBtn');
       const visible = details.style.display === 'block';
+
       details.style.display = visible ? 'none' : 'block';
       btn.setAttribute('aria-expanded', String(!visible));
     }
@@ -175,6 +211,7 @@
     function copyText(text) {
       navigator.clipboard.writeText(text).then(() => {
         const msg = document.getElementById('copyMessage');
+
         msg.style.display = 'block';
 
         setTimeout(() => {
@@ -183,5 +220,6 @@
       });
     }
   </script>
+
 </body>
 </html>
